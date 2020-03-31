@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+//import 'package:transparent_image/transparent_image.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -40,6 +42,7 @@ class _HomePageState extends State<HomePage> {
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
             return new Container(
+              padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,11 +52,16 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                           new Container(
-                            child: new Text(data[index]['title']),
-                            padding: const EdgeInsets.all(20.0),
+                            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: data[index]['img']),
                           ),
                           new Container(
-                            child: Image.network(data[index]['img']),
+                            child: new Text(
+                              data[index]['title'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16.0),
+                            ),
+                            padding: const EdgeInsets.all(15.0),
                           )
                         ])),
                   ],

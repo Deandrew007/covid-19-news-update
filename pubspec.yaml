@@ -1,5 +1,5 @@
 name: covid19newsapp
-description: News app covering the covid-19 pandemic
+description: News app covering the covid-19 pandemic. For educational purposes and should not be use as your news source.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: ^0.12.0
+  #transparent_image: ^1.0.0
 
 
 dev_dependencies:
@@ -43,8 +44,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+    - assets/loading.gif
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
