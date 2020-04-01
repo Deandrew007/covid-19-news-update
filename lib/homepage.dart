@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:async';
 //import 'package:transparent_image/transparent_image.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -51,8 +50,13 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
-                          new Container(
-                            child: FadeInImage.assetNetwork(placeholder: 'assets/loading.gif', image: data[index]['img']),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).pushNamed("/a"),
+                            child: new Container(
+                              child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/loading.gif',
+                                  image: data[index]['img']),
+                            ),
                           ),
                           new Container(
                             child: new Text(

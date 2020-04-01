@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid19newsapp/homepage.dart';
+import 'package:covid19newsapp/NewsPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +11,9 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Covid-19 NewsApp',
       home: new HomePage(),
-      );
+      routes: <String, WidgetBuilder>{
+        "/a": (BuildContext context) => new NewsPage(),
+  });
   }
 }
 
