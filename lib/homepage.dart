@@ -1,8 +1,8 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-//import 'package:transparent_image/transparent_image.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text("Covid-19 Updates"),
+          backgroundColor: Colors.greenAccent,
+          centerTitle: true,
         ),
         body: new ListView.builder(
           itemCount: data == null ? 0 : data.length,
@@ -50,23 +52,44 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
-                          GestureDetector(
-                            onTap: () => Navigator.of(context).pushNamed("/a"),
-                            child: new Container(
-                              child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/loading.gif',
-                                  image: data[index]['img']),
-                            ),
-                          ),
                           new Container(
-                            child: new Text(
-                              data[index]['title'],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16.0),
-                            ),
-                            padding: const EdgeInsets.all(15.0),
-                          )
+                            child: FadeInImage.assetNetwork(
+                                placeholder: 'assets/loading.gif',
+                                image: data[index]['img']),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: new Container(
+                                  child: new Text(
+                                    data[index]['title'],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0),
+                                  ),
+                                  padding: const EdgeInsets.all(10.0),
+                                ),
+                              ),
+                              Expanded(
+                                child: new Container(
+                                    child: new IconButton(
+                                        icon: Icon(Icons.launch),
+                                        onPressed: () async {
+                                          final newsLink = data[index]['link'];
+
+                                          if (await canLaunch(newsLink)) {
+                                            await launch(newsLink,
+                                                forceWebView: true);
+                                          } else {
+                                            throw 'Could not launch $newsLink';
+                                          }
+                                        })),
+                              ),
+                            ],
+                          ),
                         ])),
                   ],
                 ),
