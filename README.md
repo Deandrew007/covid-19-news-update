@@ -3,5 +3,6 @@
 News app covering the covid-19 pandemic. 
 This app is intended for educational purposes and should not be used as your news source.
 
-![](app demo gif.gif)
+
+![] app demo gif.gif
 
